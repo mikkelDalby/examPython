@@ -52,51 +52,65 @@ def scrape_content(page, url):
     file_name = url.replace('/','_')+'.md'
     file = open(file_name, 'w+')
     text = ''
-            
-    i = 0
+
+    is_running = True
     p = page
-    links = []
-    while i != -1:
-        p2 = p[i:]
-        start = p2.find('<')
-        stop = p2.find('</')
-        start_tag = p2[start+1:start+3]
-        stop_tag = p2[stop+2:stop+4]
 
-        search_tags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p ', 'p>', 'a ', 'em']
+    html_tags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'ul', 'ol', 'li']
+    while is_running:
+        start_tag = p.find('<')
+        end_tag = p.find('>')
+        tag = p[start_tag+1:end_tag]
 
-        is_in_p = False
+        close_tag = p.find('</'+tag+'>')
 
-        if not '/' in start_tag[0]:
-            if start_tag in search_tags:
-                t = p2[start:stop]
-                e = t.find('>')+1
-                line = t[e:]
-                if start_tag in search_tags[0]:
-                    text += '# ' + line + '\n'
-                if start_tag in search_tags[1]:
-                    text += '## ' + line + '\n'
-                if start_tag in search_tags[2]:
-                    text += '### ' + line + '\n'
-                if start_tag in search_tags[3]:
-                    text += '#### ' + line + '\n'
-                if start_tag in search_tags[4]:
-                    text += '##### ' + line + '\n'
-                if start_tag in search_tags[5]:
-                    text += '###### ' + line + '\n'
-                if start_tag in search_tags[6] or start_tag in search_tags[7]:
-                    if not '<' in line:
-                        text += line + '\n'
+        if tag in html_tags:
+            if tag in html_tags[0]:
+                text += '# ' + p[end_tag+1:close_tag]
+            elif tag in html_tags[1]:
+                text += '## ' + p[end_tag+1:close_tag]
+            elif tag in html_tags[2]:
+                text += '### ' + p[end_tag+1:close_tag]
+            elif tag in html_tags[3]:
+                text += '#### ' + p[end_tag+1:close_tag]
+            elif tag in html_tags[4]:
+                text += '##### ' + p[end_tag+1:close_tag]
+            elif tag in html_tags[5]:
+                text += '###### ' + p[end_tag+1:close_tag]
+            elif tag in html_tags[6]:
+                t = p[end_tag+1:close_tag]
+                more_tags = True
+                i = 0
+                while more_tags:
+                    start_nested = t[i:].find('<')
+                    end_nested = t[i:].find('>')
+                    nested_tag = t[i:][start_nested+1:end_nested]
+                    if not start_nested == -1:
+                        if 'a' in nested_tag[0]:
+                            nested_close_tag = t.find('</a>')
+                            clickable_link = t[end_nested+1:nested_close_tag]
+                            t.replace(clickable_link, '['+clickable_link+']')
+                            href = t.find('href="')+6
+                            href_end = t.find('"', t.find('"')+1)
+                            t.replace(t[start_nested:end_nested+1], t[href:href_end])
+                            print(t[href:href_end])
+                            i = nested_close_tag+4
                     else:
-                        pass
+                        more_tags = False
                         
+                text += t
+            if tag in html_tags[7]:
+                text += p[end_tag+1:close_tag]
+            if tag in html_tags[8]:
+                text += p[end_tag+1:close_tag]
+            if tag in html_tags[9]:
+                text += p[end_tag+1:close_tag]
+            text += '\n'
         
-        if stop == -1:
-            i = -1
-        else:
-            p = p2[start+4:]
+        p = p[end_tag+1:]
+        if start_tag == -1:
+            is_running = False
 
-    #print(re.sub('<.*?>', '', page))
     file.write(text)
     file.close()
     os.chdir('..')
