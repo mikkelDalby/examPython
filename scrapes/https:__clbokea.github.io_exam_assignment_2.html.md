@@ -1,2 +1,2 @@
 #Blackjack
-[https://fronter.com/kea/index.phtml]Fronter
+[https://fronter.com/kea/index.phtml] Fronter
