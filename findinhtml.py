@@ -1,5 +1,5 @@
 from urllib.request import urlopen
-from urllib.error import HTTPError
+from urllib.error import HTTPError, URLError
 import os
 
 # Finds all the a tags in the page and returns a list of urls from the tags
@@ -14,6 +14,9 @@ def find_link_in_a_tags(url):
             print('404 Page not found: ' + url)
         else:
             print('Could not get this url: ' + url)
+        return []
+    except URLError as err:
+        print('Check your internet connection')
         return []
     
     i = 0
@@ -38,7 +41,7 @@ def find_link_in_a_tags(url):
         else:
             p = p2[stop+4:]
 
-    # Scrapes the content and creates a markdown file
+    # Scrape the content and create a markdown file
     scrape_content(page, url)
 
     urls = []
@@ -61,52 +64,26 @@ def scrape_content(page, url):
         start_tag = p.find('<')
         end_tag = p.find('>')
         tag = p[start_tag+1:end_tag]
-
         close_tag = p.find('</'+tag+'>')
-
-        if tag in html_tags:
-            if tag in html_tags[0]:
-                text += '# ' + p[end_tag+1:close_tag]
-            elif tag in html_tags[1]:
-                text += '## ' + p[end_tag+1:close_tag]
-            elif tag in html_tags[2]:
-                text += '### ' + p[end_tag+1:close_tag]
-            elif tag in html_tags[3]:
-                text += '#### ' + p[end_tag+1:close_tag]
-            elif tag in html_tags[4]:
-                text += '##### ' + p[end_tag+1:close_tag]
-            elif tag in html_tags[5]:
-                text += '###### ' + p[end_tag+1:close_tag]
-            elif tag in html_tags[6]:
-                t = p[end_tag+1:close_tag]
-                more_tags = True
-                i = 0
-                while more_tags:
-                    start_nested = t[i:].find('<')
-                    end_nested = t[i:].find('>')
-                    nested_tag = t[i:][start_nested+1:end_nested]
-                    if not start_nested == -1:
-                        if 'a' in nested_tag[0]:
-                            nested_close_tag = t.find('</a>')
-                            clickable_link = t[end_nested+1:nested_close_tag]
-                            t.replace(clickable_link, '['+clickable_link+']')
-                            href = t.find('href="')+6
-                            href_end = t.find('"', t.find('"')+1)
-                            t.replace(t[start_nested:end_nested+1], t[href:href_end])
-                            print(t[href:href_end])
-                            i = nested_close_tag+4
-                    else:
-                        more_tags = False
-                        
-                text += t
-            if tag in html_tags[7]:
-                text += p[end_tag+1:close_tag]
-            if tag in html_tags[8]:
-                text += p[end_tag+1:close_tag]
-            if tag in html_tags[9]:
-                text += p[end_tag+1:close_tag]
-            text += '\n'
         
+        if tag in html_tags:
+            t = p[start_tag:close_tag+3+len(tag)]
+            
+            content = p[end_tag+1:close_tag]
+            more_tags = t.find('<')
+
+            if more_tags == 0:
+                if 'h1' in tag:
+                    t = t.replace('<h1>', '# ')
+                    t = t.replace('</h1>', '\n')
+                if 'h2' in tag:
+                    t = t.replace('<h2>', '## ')
+                    t = t.replace('</h2>', '\n')
+
+                if 'p' in tag:
+                    t = t.replace('<p>', '')
+                    t = t.replace('</p>', '\n')
+            text += t
         p = p[end_tag+1:]
         if start_tag == -1:
             is_running = False
