@@ -1,1 +1,2 @@
-#Help the police find the criminals<em>NOTE: This is a dummy site, and the info is not identical with the exam\n                requirements. You can find the requirements on <a\n                    href="https://fronter.com/kea/index.phtml">Fronter</a>.</em>
+#Help the police find the criminals
+[https://fronter.com/kea/index.phtml]Fronter

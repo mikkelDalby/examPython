@@ -1,1 +1,2 @@
-#Exam, Python elective Spring 2019<em>NOTE: This is a dummy site, and the info is not identical with the exam\n                requirements. You can find the requirements on <a\n                    href="https://fronter.com/kea/index.phtml">Fronter</a>.</em>
+#Exam, Python elective Spring 2019
+[https://fronter.com/kea/index.phtml]Fronter
