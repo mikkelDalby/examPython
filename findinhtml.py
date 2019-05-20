@@ -1,6 +1,9 @@
 from urllib.request import urlopen
 from urllib.error import HTTPError
+import os
+import re
 
+# Finds all the a tags in the page and returns a list of urls from the tags
 def find_link_in_a_tags(url):
     i = url[::-1].find('/')
     base_url = url[:len(url)-i]
@@ -37,7 +40,7 @@ def find_link_in_a_tags(url):
             p = p2[stop+4:]
 
     # Scrapes the content and creates a markdown file
-    scrape_content(page)
+    scrape_content(page, url)
 
     urls = []
     for l in links:
@@ -45,5 +48,22 @@ def find_link_in_a_tags(url):
             urls.append(base_url + l)
     return urls
 
-def scrape_content(page):
-    pass
+def scrape_content(page, url):
+    os.chdir('scrapes')
+    file_name = url.replace('/','_')+'.md'
+    file = open(file_name, 'w+')
+    text = ''
+    
+    # Get headings
+    headings = re.compile('<h.>(.*?)</h.>').search(page)
+    for h in headings.groups():
+        text += '#' + h
+    
+    p_tags = re.compile('<p.*?>(.*?)</p>').search(page)
+    for p in p_tags.groups():
+        text += p
+
+    #print(re.sub('<.*?>', '', page))
+    file.write(text)
+    file.close()
+    os.chdir('..')
