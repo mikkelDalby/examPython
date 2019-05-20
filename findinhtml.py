@@ -63,8 +63,9 @@ def scrape_content(page, url):
     p_tags = re.compile('<p.*?>(.*?)</p>').search(page)
     for p in p_tags.groups():
         if '<a' in p:
-            text += '['+re.compile('<a.*?href="(.*?)".*?</a>').search(p).group(1)+'] '
-            text += re.compile('<a.*?>(.*?)</a>').search(p).group(1)
+            text += '[' + re.compile('<a.*?>(.*?)</a>').search(p).group(1) + ']'
+            text += '('+re.compile('<a.*?href="(.*?)".*?</a>').search(p).group(1)+')'
+            
 
     #print(re.sub('<.*?>', '', page))
     file.write(text)
