@@ -88,19 +88,7 @@ def scrape_content(page, url):
                     if not '<' in line:
                         text += line + '\n'
                     else:
-                        # format links in paragrafs
-                        a_start = line.find('<a')
-                        temp_line = line[a_start:]
-
-                        href_start = temp_line.find('href="')+6
-                        href_line = temp_line[href_start:]
-                        href_end = href_line.find('"')
-                        link = href_line[:href_end]
-                        
-                        click_start = temp_line.find('>')+1
-                        clickable_text = temp_line[click_start:]
-                        
-                        text += '['+clickable_text+']('+link+')'
+                        pass
                         
         
         if stop == -1:
