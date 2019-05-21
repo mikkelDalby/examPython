@@ -21,10 +21,10 @@ def find_link_in_a_tags(url):
         print('Check your internet connection')
         return []
     
-    i = 0
+    more = True
     p = page
     links = []
-    while i != -1:
+    while more:
         p2 = p[i:]
         start = p2.find('<a ')
         stop = p2.find('</a>')
@@ -39,7 +39,7 @@ def find_link_in_a_tags(url):
                 l = s[first+6:last]
                 links.append(l)
         if stop == -1:
-            i = -1
+            more = False
         else:
             p = p2[stop+4:]
 
