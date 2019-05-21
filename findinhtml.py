@@ -9,7 +9,8 @@ def find_link_in_a_tags(url):
     base_url = url[:len(url)-i]
 
     try:
-        page = str(urlopen(url).read())
+        page = urlopen(url).read()
+        page = str(page.decode('utf-8'))
     except HTTPError as err:
         if err.code == 404:
             print('404 Page not found: ' + url)
@@ -64,6 +65,7 @@ def scrape_content(page, url):
     html_tags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'ul', 'ol', 'li']
 
     found_tags = []
+
     # while there is more tags in 'page'
     while is_running:
         start_tag = p.find('<')
@@ -72,55 +74,44 @@ def scrape_content(page, url):
         close_tag = p.find('</'+tag+'>')
 
         if tag in html_tags:
-            html = p[start_tag:close_tag+3+len(tag)]
-            found_tags.append(html)
+            content = p[start_tag:close_tag+3+len(tag)]
+            if 'h1' in tag:
+                content = content.replace('<h1>','# ')
+                content = content.replace('</h1>', '\n')
+            if 'h2' in tag:
+                content = content.replace('<h2>','## ')
+                content = content.replace('</h2>', '\n')
+            if 'h3' in tag:
+                content = content.replace('<h3>','### ')
+                content = content.replace('</h3>', '\n')
+            if 'h4' in tag:
+                content = content.replace('<h4>','#### ')
+                content = content.replace('</h4>', '\n')
+            if 'h5' in tag:
+                content = content.replace('<h5>','##### ')
+                content = content.replace('</h5>', '\n')
+            if 'h6' in tag:
+                content = content.replace('<h6>','###### ')
+                content = content.replace('</h6>', '\n')
+            if 'p' in tag:
+                content = content.replace('<p>','')
+                content = content.replace('</p>', '\n')
+            if 'ul' in tag:
+                content = content.replace('<ul>','')
+                content = content.replace('</ul>', '')
+                content = content.replace('<li>','*')
+                content = content.replace('</li>', '\n')
 
-        p = p[end_tag+1:]
+            text += content
+
+        dont_take = ['body', 'head', 'html']
+        if not tag in dont_take:
+            p = p[close_tag+3+len(tag):]
+        else:
+            p = p[end_tag+1:]
         if start_tag == -1:
             is_running = False
-
-    text += make_md(found_tags)
 
     file.write(text)
     file.close()
     os.chdir('..')
-
-def make_md(found_tags):
-    text = ''
-
-    for tag in found_tags:
-        start_tag = tag.find('<')
-        end_tag = tag.find('>')
-        tag_type = tag[start_tag+1:end_tag]
-        close_tag = tag.find('</'+tag_type+'>')
-        content = tag[end_tag+1:close_tag]
-        if content.find('<') == -1:
-            # No more tags in content
-            if 'h1' in tag_type:
-                content = '# ' + content
-            if 'h2' in tag_type:
-                content = '## ' + content
-            if 'h3' in tag_type:
-                content = '### ' + content
-            if 'h4' in tag_type:
-                content = '#### ' + content
-            if 'h5' in tag_type:
-                content = '##### ' + content
-            if 'h6' in tag_type:
-                content = '###### ' + content
-            if 'a' in tag_type:
-                print('link found')
-            text += content + '\n'
-        else:
-            content = content.replace('<ul>','')
-            content = content.replace('</ul>','')
-            content = content.replace('<li>','\n* ')
-            content = content.replace('</li>','')
-            if not content.find('<a') == -1:
-                content = re.sub(r'<a.*?href="', '(', content)
-                content = re.sub(r'".*?>', ')[', content)
-                content = re.sub(r'</a>', ']', content)
-                print('link found')
-            text += content
-        
-    return text
