@@ -90,9 +90,9 @@ def make_markdown(tag):
         md = md.replace('<ul>', '')
         md = md.replace('</ul>', '')
     if '<li>' in md:
-        md = md.replace('<li>', '\n*')
+        md = md.replace('<li>', '\n* ')
         md = md.replace('</li>', '')
-        md = md.replace('<li> ', '\n*')
+        md = md.replace('<li> ', '\n* ')
     
     
     return md
