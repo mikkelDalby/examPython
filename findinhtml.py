@@ -1,5 +1,6 @@
 from urllib.request import urlopen
 from urllib.error import HTTPError, URLError
+import re
 import os
 
 # Finds all the a tags in the page and returns a list of urls from the tags
@@ -95,12 +96,31 @@ def make_md(found_tags):
         content = tag[end_tag+1:close_tag]
         if content.find('<') == -1:
             # No more tags in content
+            if 'h1' in tag_type:
+                content = '# ' + content
+            if 'h2' in tag_type:
+                content = '## ' + content
+            if 'h3' in tag_type:
+                content = '### ' + content
+            if 'h4' in tag_type:
+                content = '#### ' + content
+            if 'h5' in tag_type:
+                content = '##### ' + content
+            if 'h6' in tag_type:
+                content = '###### ' + content
+            if 'a' in tag_type:
+                print('link found')
             text += content + '\n'
         else:
             content = content.replace('<ul>','')
             content = content.replace('</ul>','')
-            content = content.replace('<li>','* ')
-            content = content.replace('</li>','\n')
+            content = content.replace('<li>','\n* ')
+            content = content.replace('</li>','')
+            if not content.find('<a') == -1:
+                content = re.sub(r'<a.*?href="', '(', content)
+                content = re.sub(r'".*?>', ')[', content)
+                content = re.sub(r'</a>', ']', content)
+                print('link found')
             text += content
         
     return text
