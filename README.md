@@ -2,9 +2,6 @@
 ## Web crawler
 To run the program direct to the project folder and run the webscrape.py file like this
 ```Terminal
-python webscrape.py
+python webscrape.py <your url>
 ```
-By default it start by this url https://clbokea.github.io/exam/ if nothing is provided.
-You can set the index url like this
-```Terminal
-python webscrape.py https://clbokea.github.io/exam/
+If no url is provided the default url https://clbokea.github.io/exam/ will be used as index url.
