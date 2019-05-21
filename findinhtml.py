@@ -99,7 +99,7 @@ def make_md(found_tags):
         else:
             content = content.replace('<ul>','')
             content = content.replace('</ul>','')
-            content = content.replace('<li>','*')
+            content = content.replace('<li>','* ')
             content = content.replace('</li>','\n')
             text += content
         

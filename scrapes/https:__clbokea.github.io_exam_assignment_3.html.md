@@ -1,9 +1,9 @@
 Help the police find the criminals
-\n            *In the application you should be able to search for crimes based on the data in the different columns in\n                the dataset.
-\n            *The application should be able to take a gps point (lon-lat) and return a list of crimes made within a\n                radius of 5 km.
-\n            *The data output should be readable (for normal users).
-\n            *The application should furthermore be able to add new records to the dataset. (this includes writing to\n                the csv file.)
-\n            *The application should be able to export the whole dataset into json and html formats, and should be\n                able to export search results in json and and html formats as well. 
+\n            * In the application you should be able to search for crimes based on the data in the different columns in\n                the dataset.
+\n            * The application should be able to take a gps point (lon-lat) and return a list of crimes made within a\n                radius of 5 km.
+\n            * The data output should be readable (for normal users).
+\n            * The application should furthermore be able to add new records to the dataset. (this includes writing to\n                the csv file.)
+\n            * The application should be able to export the whole dataset into json and html formats, and should be\n                able to export search results in json and and html formats as well. 
 \n        In the application you should be able to search for crimes based on the data in the different columns in\n                the dataset.
 The application should be able to take a gps point (lon-lat) and return a list of crimes made within a\n                radius of 5 km.
 The data output should be readable (for normal users).
