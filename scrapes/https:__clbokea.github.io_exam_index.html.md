@@ -9,7 +9,6 @@ Exam time: Total 30 min.
  
 *2-3 min. presentation and demo of your project (not the code)  
 *Be sure to demonstrate that you solved the tasks stated in the requirements. 
-
 *7-8 min. questions about your project (here we look at your code)
 *10-12 min. general questions based on the curriculum
 *5 min. grading and feedback
@@ -19,8 +18,7 @@ Exam time: Total 30 min.
 *presentation of the project. 
 *quality of the code and documentation. 
 *ability to answer questions connected to the project. 
-*level of understanding of the general curriculum. 
-During the exam the you will be asked to do "live coding".
+*level of understanding of the general curriculum. During the exam the you will be asked to do "live coding".
 The projects from where the you should choose 1 exam project are:
 ## Specific projects
 You can read about the specific project by following the links in the <a href="#menu">menu above</a>
@@ -30,5 +28,4 @@ You can read about the specific project by following the links in the <a href="#
 *Your code will be evaluated in terms of readability 
 *Your project will be evaluated in relation to the extent to which it is perceived as a finished product.  
 *The code should be documented and you should be able to explain why you documented your code in the way you did. 
-*The code should be tested and you should at the exam be abel to talk about your tests and demonstrate them. 
- All projects have been solved by someone else in the world before you, so it would be possible to pip install a module that more or less solves the task. It is not a good idea to use this approach. You should solve the task from scratch and use the python techniques you learned during this semester. On the other hand it is fine to use the build in modules that we used during this semester, and it can also make sense in some cases to use 3rd party modules.
+*The code should be tested and you should at the exam be abel to talk about your tests and demonstrate them.  All projects have been solved by someone else in the world before you, so it would be possible to pip install a module that more or less solves the task. It is not a good idea to use this approach. You should solve the task from scratch and use the python techniques you learned during this semester. On the other hand it is fine to use the build in modules that we used during this semester, and it can also make sense in some cases to use 3rd party modules.

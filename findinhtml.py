@@ -86,13 +86,13 @@ def make_markdown(tag):
     if 'p' in t:
         md = md.replace('<p>', '')
         md = md.replace('</p>', '\n')
-    
     if '<ul>' in md:
         md = md.replace('<ul>', '')
-        md = md.replace('</ul>', '\n')
+        md = md.replace('</ul>', '')
     if '<li>' in md:
         md = md.replace('<li>', '\n*')
         md = md.replace('</li>', '')
+        md = md.replace('<li> ', '\n*')
     
     
     return md
