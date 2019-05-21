@@ -1,4 +1,1 @@
-<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <meta http-equiv="X-UA-Compatible" content="ie=edge"> 
-* <title>Exam, Python elective Spring 2019 - dummy site</title> </head> <body> <div class="container"> # Black Jack Pictures
- <img src="src/how-do-you-play-blackjack.jpg" alt="Black Jack" width="100%"> <img src="src/BlackJack6.jpg" alt="Black Jack" width="100%"> <img src="src/Double_down.JPG" alt="Black Jack" width="100%"> | 1 | <a href="next.html">2 |</a> </div> <section class="container"> <em>NOTE: This is a dummy site, and the info is not identical with the exam requirements. You can find the requirements on <a href="https://fronter.com/kea/index.phtml">Fronter</a>.</em>
- </section> </body> </html>
+# Black Jack Pictures

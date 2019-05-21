@@ -58,26 +58,41 @@ def scrape_content(page, url):
     file = open(file_name, 'w+')
 
     page = " ".join(page.split())
-    
-    page = page.replace('<h1>','# ')
-    page = page.replace('</h1>','\n')
-    page = page.replace('<h2>','## ')
-    page = page.replace('</h2>','\n')
-    page = page.replace('<h3>','### ')
-    page = page.replace('</h3>','\n')
-    page = page.replace('<h4>','#### ')
-    page = page.replace('</h4>','\n')
-    page = page.replace('<h5>','##### ')
-    page = page.replace('</h5>','\n')
-    page = page.replace('<h6>','###### ')
-    page = page.replace('</h6>','\n')
-    page = re.sub('<p.*?>', '', page)
-    page = page.replace('</p>', '\n')
-    page = re.sub('<ul.*?>', '', page)
-    page = re.sub('</ul.*?>', '\n', page)
-    page = re.sub('<li.*?>', '\n*', page)
-    page = re.sub('</li.*?>', '', page)
+    start = page.find('<h1>')+4
+    end = page.find('</h1>')
 
-    file.write(page)
+    text = ''
+
+    validate = '<h1>.*?</h1>|<h2>.*?</h2>|<h3>.*?</h3>|<h4>.*?</h4>|<h5>.*?</h5>|<h6>.*?</h6>|<p>.*?</p>|<ul>.*?</ul>|<li>.*?</li>'
+    relevant_tags = re.findall(validate, page)
+    for tag in relevant_tags:
+        more_tags = re.findall(validate, tag)
+
+        text += make_markdown(tag)
+
+    file.write(text)
     file.close()
     os.chdir('..')
+
+def make_markdown(tag):
+    t = tag[1:3]
+    md = tag
+    if 'h1' in t:
+        md = md.replace('<h1>','# ')
+        md = md.replace('</h1>','\n')
+    if 'h2' in t:
+        md = md.replace('<h2>','## ')
+        md = md.replace('</h2>','\n')
+    if 'p' in t:
+        md = md.replace('<p>', '')
+        md = md.replace('</p>', '\n')
+    
+    if '<ul>' in md:
+        md = md.replace('<ul>', '')
+        md = md.replace('</ul>', '\n')
+    if '<li>' in md:
+        md = md.replace('<li>', '\n*')
+        md = md.replace('</li>', '')
+    
+    
+    return md

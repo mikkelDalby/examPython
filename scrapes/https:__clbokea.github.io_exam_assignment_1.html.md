@@ -1,20 +1,10 @@
-<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <meta http-equiv="X-UA-Compatible" content="ie=edge"> 
-* <title>Exam, Python elective Spring 2019 - dummy site</title> </head> <body> <a name="menu"></a> <nav class="navbar navbar-expand-lg navbar-light bg-light"> <div class="container"> <a class="navbar-brand" href="index.html"><img src="src/logo_python.png" alt="logo" width="40px"></a> <div class="collapse navbar-collapse" id="navbarNav">  
-* <a class="nav-link" href="index.html">Exam flow</a>  
-* <a class="nav-link" href="assignment_1.html">Assignment 1</a>  
-* <a class="nav-link" href="assignment_2.html">Assingment 2</a>  
-* <a class="nav-link" href="assignment_3.html">Assingment 3</a>  
-* <a class="nav-link" href="assignment_4.html">Assingment 4</a>  
- </div> </div> </nav> <section class="container" style="margin-top: 20px"> <em>NOTE: This is a dummy site, and the info is not identical with the exam requirements. You can find the requirements on <a href="https://fronter.com/kea/index.phtml">Fronter</a>.</em>
- </section> <article class="container"> <div class="lead">Assignment 1</div> # Crawl a web site and save the content in markdown
- <img src="src/main-qimg-c224920a6f3ae3f8089ccd1e8dad65af.jpeg" alt="web scraping" width="100%"> Choose a website of your own choice or use <a href="https://clbokea.github.io/exam/index.html">this website</a> crawl it and "scrape" it.
- The content of the website should be saved in markdown formatted files on your computer.
- It can be a good idea to choose a relatively small website.
- It can also be a good idea to have some sort of limit on which links you want to follow. 
- What you choose to retrieve from the crawled site is up to you. But you should describe why you choose to do like you did.
- ## An Example
- A html page looking like this:
-  <code> &lt;!DOCTYPE html&gt; &lt;html lang="en"&gt; &lt;head&gt; &lt;meta charset="UTF-8"&gt; &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt; &lt;meta http-equiv="X-UA-Compatible" content="ie=edge"&gt; &lt;link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"&gt; &lt;title&gt;Index&lt;/title&gt; &lt;/head&gt; &lt;body&gt; &lt;nav class="nav"&gt; &lt;a class="nav-link active" href="index.html"&gt;Home&lt;/a&gt; &lt;a class="nav-link" href="about.html"&gt;About&lt;/a&gt; &lt;a class="nav-link" href="contact.html"&gt;Contact&lt;/a&gt; &lt;/nav&gt; &lt;div class="container"&gt; &lt;h1&gt;Clbo company&lt;/h1&gt; &lt;p&gt;Welcome home!&lt;/p&gt; &lt;p&gt;Here you have a list of our services&lt;/p&gt; &lt;ul&gt; &lt;li&gt;Web Scraping&lt;/li&gt; &lt;li&gt;Web Design&lt;/li&gt; &lt;li&gt;Backend development&lt;/li&gt; &lt;/ul&gt; &lt;/div&gt; &lt;/body&gt; &lt;/html&gt; </code> </pre> Becomes:
-  # Clbo company Welcome home! Here you have a list of our services * Web Scraping * Web Design * Backend development </pre> The links to follow (crawl) would in this case be "about.html" and "contact.html"
- </article> <section class="container"> <em>NOTE: This is a dummy site, and the info is not identical with the exam requirements. You can find the requirements on <a href="https://fronter.com/kea/index.phtml">Fronter</a>.</em>
- </section> </body> </html>
+# Crawl a web site and save the content in markdown
+Choose a website of your own choice or use <a href="https://clbokea.github.io/exam/index.html">this website</a> crawl it and "scrape" it.
+The content of the website should be saved in markdown formatted files on your computer.
+It can be a good idea to choose a relatively small website.
+It can also be a good idea to have some sort of limit on which links you want to follow. 
+What you choose to retrieve from the crawled site is up to you. But you should describe why you choose to do like you did.
+## An Example
+A html page looking like this:
+Becomes:
+The links to follow (crawl) would in this case be "about.html" and "contact.html"
