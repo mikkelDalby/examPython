@@ -97,11 +97,19 @@ def scrape_content(page, url):
             if 'p' in tag:
                 content = content.replace('<p>','')
                 content = content.replace('</p>', '\n')
+                content = content.replace('<li>','*')
+                content = content.replace('</li>', '\n')
+                if '<li>' in content:
+                    content = content = content.replace('<li>','    *')
+                    content = content.replace('</li>', '\n')
             if 'ul' in tag:
                 content = content.replace('<ul>','')
                 content = content.replace('</ul>', '')
                 content = content.replace('<li>','*')
                 content = content.replace('</li>', '\n')
+                if '<li>' in content:
+                    content = content = content.replace('<li>','    *')
+                    content = content.replace('</li>', '\n')
             
             text += content
 
