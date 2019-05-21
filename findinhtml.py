@@ -75,7 +75,7 @@ def scrape_content(page, url):
     page = page.replace('</p>', '\n')
     page = re.sub('<ul.*?>', '', page)
     page = re.sub('</ul.*?>', '\n', page)
-    page = re.sub('<li.*?>', '*', page)
+    page = re.sub('<li.*?>', '\n*', page)
     page = re.sub('</li.*?>', '', page)
 
     file.write(page)

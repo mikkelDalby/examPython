@@ -1,4 +1,10 @@
-<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <meta http-equiv="X-UA-Compatible" content="ie=edge"> * <title>Exam, Python elective Spring 2019 - dummy site</title> </head> <body> <a name="menu"></a> <nav class="navbar navbar-expand-lg navbar-light bg-light"> <div class="container"> <a class="navbar-brand" href="index.html"><img src="src/logo_python.png" alt="logo" width="40px"></a> <div class="collapse navbar-collapse" id="navbarNav">  * <a class="nav-link" href="index.html">Exam flow</a>  * <a class="nav-link" href="assignment_1.html">Assignment 1</a>  * <a class="nav-link" href="assignment_2.html">Assingment 2</a>  * <a class="nav-link" href="assignment_3.html">Assingment 3</a>  * <a class="nav-link" href="assignment_4.html">Assingment 4</a>  
+<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <meta http-equiv="X-UA-Compatible" content="ie=edge"> 
+* <title>Exam, Python elective Spring 2019 - dummy site</title> </head> <body> <a name="menu"></a> <nav class="navbar navbar-expand-lg navbar-light bg-light"> <div class="container"> <a class="navbar-brand" href="index.html"><img src="src/logo_python.png" alt="logo" width="40px"></a> <div class="collapse navbar-collapse" id="navbarNav">  
+* <a class="nav-link" href="index.html">Exam flow</a>  
+* <a class="nav-link" href="assignment_1.html">Assignment 1</a>  
+* <a class="nav-link" href="assignment_2.html">Assingment 2</a>  
+* <a class="nav-link" href="assignment_3.html">Assingment 3</a>  
+* <a class="nav-link" href="assignment_4.html">Assingment 4</a>  
  </div> </div> </nav> <section class="container" style="margin-top: 20px"> <em>NOTE: This is a dummy site, and the info is not identical with the exam requirements. You can find the requirements on <a href="https://fronter.com/kea/index.phtml">Fronter</a>.</em>
  </section> <article class="container"> <div class="lead">Assignment 1</div> # Crawl a web site and save the content in markdown
  <img src="src/main-qimg-c224920a6f3ae3f8089ccd1e8dad65af.jpeg" alt="web scraping" width="100%"> Choose a website of your own choice or use <a href="https://clbokea.github.io/exam/index.html">this website</a> crawl it and "scrape" it.
