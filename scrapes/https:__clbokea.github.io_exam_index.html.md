@@ -21,7 +21,7 @@ Exam time: Total 30 min.
 * level of understanding of the general curriculum. During the exam the you will be asked to do "live coding".
 The projects from where the you should choose 1 exam project are:
 ## Specific projects
-You can read about the specific project by following the links in the <a href="#menu">menu above</a>
+You can read about the specific project by following the links in the [menu above](#menu)
 ## General for all projects
  
 * The project should be finished, meaning: don´t hand in and show up at the exam with something half done.  

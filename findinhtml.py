@@ -95,4 +95,29 @@ def make_markdown(tag):
         md = md.replace('<li>', '\n* ')
         md = md.replace('</li>', '')
         md = md.replace('<li> ', '\n* ')
+    
+
+    # Convert all a tags
+    more_links = True
+    while more_links:
+        if '<a' in md:
+            start = md.find('<a')
+            end_start = md.find('>')
+            end_tag = md.find('</a>')
+
+            whole_tag = md[start:end_tag+4]
+            start_tag = md[start:end_start+1]
+            clickable_link = md[end_start+1:end_tag]
+
+            href_start = start_tag.find('href="')+6
+            href_to_end = start_tag[href_start:]
+            href_end = href_to_end.find('"')
+            href = start_tag[href_start:href_start+href_end]
+            
+            md = md.replace(whole_tag, '['+clickable_link+']('+href+')')
+        else:
+            more_links = False
+        
+
+
     return md
