@@ -52,6 +52,7 @@ def find_link_in_a_tags(url):
             urls.append(base_url + l)
     return urls
 
+# Creates a markdown file from the url name based on url
 def scrape_content(page, url):
     os.chdir('scrapes')
     file_name = url.replace('/','_')+'.md'
@@ -63,17 +64,18 @@ def scrape_content(page, url):
 
     text = ''
 
+    # Defines wich html tags is relevant
     validate = '<h1>.*?</h1>|<h2>.*?</h2>|<h3>.*?</h3>|<h4>.*?</h4>|<h5>.*?</h5>|<h6>.*?</h6>|<p>.*?</p>|<ul>.*?</ul>|<li>.*?</li>'
     relevant_tags = re.findall(validate, page)
     for tag in relevant_tags:
         more_tags = re.findall(validate, tag)
-
         text += make_markdown(tag)
 
     file.write(text)
     file.close()
     os.chdir('..')
 
+# Converts html to markdown syntax
 def make_markdown(tag):
     t = tag[1:3]
     md = tag
@@ -93,6 +95,4 @@ def make_markdown(tag):
         md = md.replace('<li>', '\n* ')
         md = md.replace('</li>', '')
         md = md.replace('<li> ', '\n* ')
-    
-    
     return md
