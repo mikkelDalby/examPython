@@ -1,4 +1,4 @@
-# An application of your own choice.
+An application of your own choice.
 The last option is to create an application of your own choice.
 You can create whatever you want, as long as you can show me (Claus) a precise requirements specification\n            before you start, and get it approved.
 It is important, that you at the exam precisely demonstrate the fulfilments of these requirements. 

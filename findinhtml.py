@@ -59,35 +59,48 @@ def scrape_content(page, url):
     is_running = True
     p = page
 
+    # Tags to search for
     html_tags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'ul', 'ol', 'li']
+
+    found_tags = []
+    # while there is more tags in 'page'
     while is_running:
         start_tag = p.find('<')
         end_tag = p.find('>')
         tag = p[start_tag+1:end_tag]
         close_tag = p.find('</'+tag+'>')
-        
+
         if tag in html_tags:
-            t = p[start_tag:close_tag+3+len(tag)]
-            
-            content = p[end_tag+1:close_tag]
-            more_tags = t.find('<')
+            html = p[start_tag:close_tag+3+len(tag)]
+            found_tags.append(html)
 
-            if more_tags == 0:
-                if 'h1' in tag:
-                    t = t.replace('<h1>', '# ')
-                    t = t.replace('</h1>', '\n')
-                if 'h2' in tag:
-                    t = t.replace('<h2>', '## ')
-                    t = t.replace('</h2>', '\n')
-
-                if 'p' in tag:
-                    t = t.replace('<p>', '')
-                    t = t.replace('</p>', '\n')
-            text += t
         p = p[end_tag+1:]
         if start_tag == -1:
             is_running = False
 
+    text += make_md(found_tags)
+
     file.write(text)
     file.close()
     os.chdir('..')
+
+def make_md(found_tags):
+    text = ''
+
+    for tag in found_tags:
+        start_tag = tag.find('<')
+        end_tag = tag.find('>')
+        tag_type = tag[start_tag+1:end_tag]
+        close_tag = tag.find('</'+tag_type+'>')
+        content = tag[end_tag+1:close_tag]
+        if content.find('<') == -1:
+            # No more tags in content
+            text += content + '\n'
+        else:
+            content = content.replace('<ul>','')
+            content = content.replace('</ul>','')
+            content = content.replace('<li>','*')
+            content = content.replace('</li>','\n')
+            text += content
+        
+    return text
