@@ -57,7 +57,7 @@ def scrape_content(page, url):
     file_name = url.replace('/','_')+'.md'
     file = open(file_name, 'w+')
 
-    page = page.strip(' ')
+    page = " ".join(page.split())
     
     page = page.replace('<h1>','# ')
     page = page.replace('</h1>','\n')
