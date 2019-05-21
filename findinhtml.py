@@ -56,6 +56,8 @@ def scrape_content(page, url):
     os.chdir('scrapes')
     file_name = url.replace('/','_')+'.md'
     file = open(file_name, 'w+')
+
+    page = page.strip(' ')
     
     page = page.replace('<h1>','# ')
     page = page.replace('</h1>','\n')
