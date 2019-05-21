@@ -75,6 +75,7 @@ def scrape_content(page, url):
 
         if tag in html_tags:
             content = p[start_tag:close_tag+3+len(tag)]
+            content = " ".join(content.split())
             if 'h1' in tag:
                 content = content.replace('<h1>','# ')
                 content = content.replace('</h1>', '\n')
@@ -101,7 +102,7 @@ def scrape_content(page, url):
                 content = content.replace('</ul>', '')
                 content = content.replace('<li>','*')
                 content = content.replace('</li>', '\n')
-
+            
             text += content
 
         dont_take = ['body', 'head', 'html']
