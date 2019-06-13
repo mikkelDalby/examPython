@@ -1,5 +1,6 @@
 # Python exam project
 ## Web crawler
+To run the script, clone the project, direct to the project folder and run the webscrape.py file like below. The "\<index url\>" is optional and defines wich url to start the crawl from.
 ```Terminal
 python webscrape.py <index url>
 ```
