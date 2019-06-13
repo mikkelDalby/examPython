@@ -1,5 +1,5 @@
 # Help the police find the criminals
- 
+  
 * In the application you should be able to search for crimes based on the data in the different columns in the dataset. 
 * The application should be able to take a gps point (lon-lat) and return a list of crimes made within a radius of 5 km. 
 * The data output should be readable (for normal users). 
